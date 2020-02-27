@@ -25,22 +25,33 @@ public class CarBeanLife implements BeanFactoryAware, BeanNameAware, Initializin
 
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-
+        System.out.println("调用BeanFactoryAware接口方法设置beanFactory");
+        this.beanFactory = beanFactory;
     }
 
     @Override
     public void setBeanName(String s) {
-
+        System.out.println("调用BeanNameAware接口方法设置beanName");
+        this.beanName = s;
     }
 
     @Override
     public void destroy() throws Exception {
-
+        System.out.println("调用DisposableBean.destroy方法");
     }
 
     @Override
     public void afterPropertiesSet() throws Exception {
+        System.out.println("调用InitializingBean.afterPropertiesSet方法");
+    }
 
+    public void myInit(){
+        System.out.println("调用init-method方法指定的myInit方法设置速度为400");
+        this.speed = 400;
+    }
+
+    public void myDestroy(){
+        System.out.println("调用destroy-method方法指定的myDestroy方法");
     }
 
     public String getType() {
@@ -48,6 +59,7 @@ public class CarBeanLife implements BeanFactoryAware, BeanNameAware, Initializin
     }
 
     public void setType(String type) {
+        System.out.println("设置car类型");
         this.type = type;
     }
 
@@ -74,5 +86,9 @@ public class CarBeanLife implements BeanFactoryAware, BeanNameAware, Initializin
                 ", color='" + color + '\'' +
                 ", speed=" + speed +
                 '}';
+    }
+
+    public void printCar(){
+        System.out.println(this.toString());
     }
 }
