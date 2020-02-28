@@ -22,7 +22,7 @@ public class LifeMain {
         ((DefaultListableBeanFactory) beanFactory).addBeanPostProcessor(new MyBeanPostProcessor());
         // 像容器注册MyBeanInstantiationAwareBeanPostProcessor后处理器
         ((DefaultListableBeanFactory) beanFactory).addBeanPostProcessor(new MyBeanInstantiationAwareBeanPostProcessor());
-
+        System.out.println("获取bean前操作");
         // 第一次从容器中获取car，将触发容器实例化bean，引起bean生命周期方法的调用
         CarBeanLife car = (CarBeanLife) beanFactory.getBean("car-life");
         car.printCar();
